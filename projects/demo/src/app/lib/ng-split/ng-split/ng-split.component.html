@@ -1,0 +1,21 @@
+<div class="container">
+  <ng-content></ng-content>
+  @for(divider of dividers; track $index) {
+  <div
+  draggable="false"
+    class="divider"
+    [draggable]
+    [resizable]="false"
+    [positioning]="'transform'"
+    (positionUpdated)="onDividerUpdated($event, $index)"
+    [axis]="direction()"
+    [style.transform]="`translate(${divider.x}px, ${divider.y}px)`"
+    [style.height]="divider.height + 'px'"
+    [style.width]="divider.width + 'px'"
+    [maxX]="direction() === 'horizontal' ? divider.maxX : undefined"
+    [minX]="direction() === 'horizontal' ? divider.minX : undefined"
+    [maxY]="direction() === 'vertical' ? divider.maxY : undefined"
+    [minY]="direction() === 'vertical' ? divider.minY : undefined"
+  ></div>
+  }
+</div>

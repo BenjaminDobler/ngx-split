@@ -1,0 +1,29 @@
+<ng-split direction="vertical" style="height: 500px; width: 1000px">
+  <ng-split-panel>
+    <ng-split>
+      <ng-split-panel><div class="container">Hallo1</div></ng-split-panel>
+      <ng-split-panel><div class="container">Hallo2</div></ng-split-panel>
+      <ng-split-panel>
+        <ng-split [direction]="'vertical'">
+          <ng-split-panel [flex]="2"
+            ><div class="container">Hallo1</div></ng-split-panel
+          >
+          <ng-split-panel><div class="container">Hallo1</div></ng-split-panel>
+          <ng-split-panel><div class="container">Hallo1</div></ng-split-panel>
+        </ng-split>
+      </ng-split-panel>
+      <ng-split-panel><div class="container">Hallo4</div></ng-split-panel>
+    </ng-split>
+  </ng-split-panel>
+  <ng-split-panel>
+    <ng-split>
+      <ng-split-panel><div class="container">Hallo1</div></ng-split-panel>
+      <ng-split-panel><div class="container">Hallo2</div></ng-split-panel>
+      <ng-split-panel [flex]="4"
+        ><div class="container">Hallo4</div></ng-split-panel
+      >
+      <ng-split-panel><div class="container">Hallo4</div></ng-split-panel>
+      <ng-split-panel><div class="container">Hallo4</div></ng-split-panel>
+    </ng-split>
+  </ng-split-panel>
+</ng-split>
