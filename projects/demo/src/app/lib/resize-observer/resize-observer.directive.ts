@@ -1,10 +1,10 @@
-import { Directive, ElementRef, inject, output } from '@angular/core';
+import { Directive, ElementRef, inject, output, AfterViewInit } from '@angular/core';
 import { ResizeObserverService } from './resize-observer.service';
 
 @Directive({
   selector: '[appResizeObserver]',
 })
-export class ResizeObserverDirective {
+export class ResizeObserverDirective implements AfterViewInit {
   observer = inject(ResizeObserverService);
   el = inject(ElementRef);
 

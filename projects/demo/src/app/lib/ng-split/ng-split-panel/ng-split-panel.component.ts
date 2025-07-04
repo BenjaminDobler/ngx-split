@@ -1,10 +1,10 @@
-import { Component, ElementRef, inject, model, signal } from '@angular/core';
-
+import { ChangeDetectionStrategy, Component, ElementRef, inject, model, signal } from '@angular/core';
 
 @Component({
   selector: 'ng-split-panel',
   templateUrl: './ng-split-panel.component.html',
   styleUrl: './ng-split-panel.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[style.width]': "width() + 'px'",
     '[style.height]': "height() + 'px'",
@@ -20,6 +20,4 @@ export class NgSplitPanelComponent {
   y = signal<number>(0);
   el = inject(ElementRef);
   flex = model<number>(1);
-
-  constructor() {}
 }

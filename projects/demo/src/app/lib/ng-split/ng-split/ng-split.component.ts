@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   contentChildren,
   effect,
@@ -11,7 +12,7 @@ import { DraggerDirective } from '../../rx-drag/dragger.directive';
 import { ResizeObserverDirective } from '../../resize-observer/resize-observer.directive';
 
 class Divider {
-  position: number = 0;
+  position = 0;
   height = 0;
   width = 0;
   x = 0;
@@ -27,6 +28,7 @@ class Divider {
   imports: [DraggerDirective],
   templateUrl: './ng-split.component.html',
   styleUrl: './ng-split.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   hostDirectives: [
     {
       directive: ResizeObserverDirective,
@@ -91,7 +93,7 @@ export class NgSplitComponent {
           childPercentage = panel.width() / this.previousContentWidth;
         }
 
-        let w = widthWithoutDivider * childPercentage;
+        const w = widthWithoutDivider * childPercentage;
 
         const panelX = x + i * this.dividerSize();
 
@@ -122,7 +124,6 @@ export class NgSplitComponent {
         this.dividers.push(d);
       }
 
-      let x = 0;
       const flexSum = p.reduce((prev, curr) => {
         return prev + curr.flex();
       }, 0);

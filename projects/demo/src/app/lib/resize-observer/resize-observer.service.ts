@@ -18,7 +18,6 @@ export class ResizeObserverService {
           this.expectedWidths.get(entry.target) === entry.contentRect.width &&
           this.expectedHeights.get(entry.target) === entry.contentRect.height
         ) {
-          console.log('skip change!');
           continue;
         }
         this.expectedHeights.set(entry.target, entry.contentRect.height);

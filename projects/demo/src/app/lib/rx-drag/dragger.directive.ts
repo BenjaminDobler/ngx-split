@@ -6,6 +6,7 @@ import {
   input,
   Input,
   Output,
+  AfterViewInit,
 } from '@angular/core';
 import { makeDraggable } from './drag.util';
 import { Subject, takeUntil } from 'rxjs';
@@ -14,7 +15,7 @@ import { Subject, takeUntil } from 'rxjs';
   selector: '[draggable]',
   standalone: true,
 })
-export class DraggerDirective {
+export class DraggerDirective implements AfterViewInit {
   el: ElementRef = inject(ElementRef);
 
   @Input()
@@ -60,14 +61,17 @@ export class DraggerDirective {
 
     let parentRect = parentElement.getBoundingClientRect();
     let itemRect = itemElement.getBoundingClientRect();
-    console.log('itemrect ', itemRect.left);
 
     const setWidth = (width: number) => {
-      this.positioning !== 'none' && (itemElement.style.width = `${width}px`);
+      if (this.positioning !== 'none') {
+        itemElement.style.width = `${width}px`;
+      }
       this.widthUpdated.emit(width);
     };
     const setHeight = (height: number) => {
-      this.positioning !== 'none' && (itemElement.style.height = `${height}px`);
+      if (this.positioning !== 'none') {
+        itemElement.style.height = `${height}px`;
+      }
       this.heightUpdated.emit(height);
     };
 
@@ -103,7 +107,6 @@ export class DraggerDirective {
           itemElement.style.transform = `translateX(${x}px)`;
         }
       }
-      console.log('emit ', x);
       this.positionUpdated.emit({ x, y });
     };
 
@@ -111,7 +114,6 @@ export class DraggerDirective {
 
     drag.dragStart$.pipe(takeUntil(this.onDestroy$)).subscribe(() => {
       itemRect = itemElement.getBoundingClientRect();
-      console.log('start item rect', itemRect);
       parentRect = parentElement.getBoundingClientRect();
     });
     drag.dragMove$.pipe(takeUntil(this.onDestroy$)).subscribe((move) => {
@@ -135,7 +137,6 @@ export class DraggerDirective {
 
         const x = offsetX - parentRect.left;
         const y = offsetY - parentRect.top;
-        console.log('drag ', x);
         pos(x, y);
       } else if (isBottomHeightDrag) {
         let height =
