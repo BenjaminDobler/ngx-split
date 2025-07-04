@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { NgSplitComponent } from './lib/ng-split/ng-split/ng-split.component';
-import { NgSplitPanelComponent } from './lib/ng-split/ng-split-panel/ng-split-panel.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [NgSplitComponent, NgSplitPanelComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
