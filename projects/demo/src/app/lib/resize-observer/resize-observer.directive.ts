@@ -1,4 +1,10 @@
-import { Directive, ElementRef, inject, output, AfterViewInit } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  inject,
+  output,
+  AfterViewInit,
+} from '@angular/core';
 import { ResizeObserverService } from './resize-observer.service';
 
 @Directive({
@@ -14,5 +20,9 @@ export class ResizeObserverDirective implements AfterViewInit {
     this.observer.observe(this.el.nativeElement, (w: number, h: number) => {
       this.size.emit({ width: w, height: h });
     });
+  }
+
+  ngOnDestroy() {
+    this.observer.unobserve(this.el.nativeElement);
   }
 }

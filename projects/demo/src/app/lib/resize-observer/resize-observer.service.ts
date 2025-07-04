@@ -40,4 +40,9 @@ export class ResizeObserverService {
     this.resizeObserver?.observe(el);
     this.observerMap.set(el, callback);
   }
+
+  unobserve(el: HTMLElement) {
+    this.resizeObserver?.unobserve(el);
+    this.observerMap.delete(el);
+  }
 }
