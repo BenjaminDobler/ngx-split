@@ -35,11 +35,14 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const el = document.querySelector('#resize_element') as HTMLDivElement;
     el.style.width = '200px';
+    el.style.height = '200px';
+
 
     fixture.detectChanges();
 
     setTimeout(() => {
       expect(testComponent.sizeChanged).toHaveBeenCalled();
+      expect(testComponent.sizeChanged).toHaveBeenCalledWith({width: 200, height: 200})
       fixture.detectChanges();
       done();
     }, 100);

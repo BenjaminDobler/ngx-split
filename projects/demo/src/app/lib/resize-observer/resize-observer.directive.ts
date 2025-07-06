@@ -3,14 +3,14 @@ import {
   ElementRef,
   inject,
   output,
-  AfterViewInit,
+  AfterViewInit, OnDestroy,
 } from '@angular/core';
 import { ResizeObserverService } from './resize-observer.service';
 
 @Directive({
   selector: '[appResizeObserver]',
 })
-export class ResizeObserverDirective implements AfterViewInit {
+export class ResizeObserverDirective implements AfterViewInit, OnDestroy {
   observer = inject(ResizeObserverService);
   el = inject(ElementRef);
 
